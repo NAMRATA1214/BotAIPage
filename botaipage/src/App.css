@@ -1,0 +1,419 @@
+body,
+html {
+  font-family: "Ubuntu";
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  /* overflow: hidden; */
+}
+
+.chat-box {
+  display: flex;
+  height: 100vh;
+}
+
+.drawer {
+  width: 208px;
+  height: 100vh;
+}
+
+.drawer-header {
+  width: 208px;
+  height: 47px;
+  background: linear-gradient(0deg, #d7c7f4, #d7c7f4);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.new-chat-button {
+  width: 24px;
+  height: 24px;
+}
+
+.past-convo-button {
+  width: 175.16px;
+  height: 39px;
+  border-radius: 10px;
+  background: linear-gradient(0deg, #d7c7f4, #d7c7f4);
+  font-size: 16px;
+  font-weight: 700;
+  color: #414146;
+
+  border: none;
+  margin: 11px;
+}
+
+.chat-box .content {
+  width: 100vw;
+  padding: 14px;
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(215, 199, 244, 0.2) 0%,
+    rgba(151, 133, 186, 0.2) 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 1228px) {
+  .chat-box .content {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 695px) {
+  .chat-box .content {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 544px) {
+  .chat-box .content {
+    width: 20vw;
+  }
+}
+
+@media (max-width: 532px) {
+  .chat-box .content {
+    width: 5vw;
+  }
+}
+
+.bot-ai {
+  font-size: 28px;
+  font-weight: 700;
+
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.bot-ai span {
+  margin-left: 20px;
+  color: #9785ba;
+}
+
+.message-area {
+  flex: 1;
+  margin-bottom: 47px;
+  /* height: 100%; */
+}
+
+.initial-questions {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.welcome-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-section p {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0px;
+  text-align: center;
+}
+
+.welcome-section img {
+  width: 65.3px;
+  height: 69px;
+}
+
+.questions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  row-gap: 32px;
+  margin-bottom: 14px;
+}
+
+.question-button {
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 16px;
+  box-shadow: 0px 4px 10px 0px #00000026;
+
+  cursor: pointer;
+  border: none;
+}
+
+.question-button p {
+  margin: 0px;
+}
+
+.question-button p:first-child {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.question-button p:last-child {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+  color: #00000080;
+}
+
+.input-area {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.input-area input {
+  width: 846.09px;
+  height: 41px;
+  border-radius: 5px;
+  border: 1px solid #00000073;
+  flex: 1;
+}
+
+.input-area button {
+  width: 73.82px;
+  height: 41px;
+  border-radius: 5px;
+  background: #d7c7f4;
+  font-size: 20px;
+  font-weight: 400;
+
+  border: none;
+}
+
+.messages {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 670px) {
+  .messages {
+    height: 70vh;
+  }
+}
+
+.message-bubble {
+  width: 90%;
+  height: fit-content;
+  border-radius: 20px;
+  background: #d7c7f421;
+  box-shadow: -4px 4px 15px 0px #0000001a;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.message-bubble-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-bubble-text p {
+  margin: 0px;
+}
+.message-bubble-text img {
+  width: 65.3px;
+  height: 69px;
+}
+
+.message-bubble-text .name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.message-bubble-text .info {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.message-bubble-text .time {
+  font-family: "Open Sans";
+  font-size: 12px;
+  font-weight: 400;
+  color: #0000009e;
+}
+
+.feedback-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.feedback-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.feedback-header > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.feedback-header .logo {
+  width: 40px;
+  height: 42px;
+}
+
+.feedback-header span {
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.feedback-header .close-button {
+  width: 19px;
+  height: 32px;
+}
+
+.feedback-message {
+  width: 670px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #00000073;
+
+  padding: 30px;
+  font-size: 20px;
+  outline: none;
+}
+
+.feedback-submit {
+  width: 100%;
+  text-align: right;
+}
+
+.feedback-submit button {
+  width: 157px;
+  height: 50px;
+  border-radius: 5px;
+  background: #d7c7f4;
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  justify-self: baseline;
+  margin-right: 30px;
+}
+
+.PastConversations {
+  width: 100%;
+  height: 780px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PastConversations .heading {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.PastConversations .rating-filter select {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.PastConversations .content {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: scroll;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.PastConversations .date {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.PastConversations .chat-section {
+  width: 100%;
+  height: fit-content;
+}
+
+.PastConversations .prev-convo-messages {
+  width: 95%;
+  height: fit-content;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #bface2 0%, #d7c7f4 100%);
+  box-shadow: -4px 4px 15px 0px #0000001a;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 426px) {
+  .PastConversations .prev-convo-messages {
+    width: 90%;
+  }
+}
+
+.PastConversations .rating {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.feedback-section {
+  display: flex;
+  gap: 20px;
+}
+
+.feedback-section .feedback-heading {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.feedback-section .feedback {
+  width: 275px;
+  height: 22px;
+}
+
+.no-prev-chat {
+  text-align: center;
+}

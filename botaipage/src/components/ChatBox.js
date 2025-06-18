@@ -38,8 +38,7 @@ const ChatBox = () => {
   const handleQuestionClick = async (question) => {
     setShowInitialQuestions(false);
     const newMessages = [{ sender: 'user', text: question, time: getCurrentTime() }];
-    let aiResponse = staticQA[question.trim()];
-    if (!aiResponse) aiResponse = "Sorry, Did not understand your query!";
+    const aiResponse = staticQA[input.trim()] || "Sorry, Did not understand your query!";
     setMessages([...newMessages, { sender: 'ai', text: aiResponse, time: getCurrentTime() }]);
   };
 
@@ -83,6 +82,7 @@ const ChatBox = () => {
   useEffect(() => {
     localStorage.setItem('previousChats', JSON.stringify(previousChats));
   }, [previousChats]);
+  
 
   const messagesEndRef = useRef(null);
   useEffect(() => {

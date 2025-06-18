@@ -39,24 +39,7 @@ const SidebarContent = ({ startNewChat, handlePastConvo }) => {
       <div className="drawer-header" style={{ background: !lightTheme && 'black' }}>
         <img src="/images/logo2.svg" alt="logo2" className="logo-img" />
 
-        {/* ✅ Text-based New Chat link */}
-        <a
-          href="/"
-          className="new-chat-button"
-          onClick={startNewChat}
-          style={{
-            display: 'block',
-            padding: '10px',
-            color: lightTheme ? '#000' : '#fff',
-            textDecoration: 'none',
-            background: lightTheme ? '#f0f0f0' : '#401d78',
-            marginTop: '10px',
-            borderRadius: '5px',
-            textAlign: 'center',
-          }}
-        >
-          New Chat
-        </a>
+        <a href="/" className="new-chat-button" onClick={startNewChat}>New Chat</a>
       </div>
 
       {/* ✅ Text-based Past Conversations link */}

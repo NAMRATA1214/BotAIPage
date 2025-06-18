@@ -1,9 +1,5 @@
-import './App.css';
-import ChatBox from './components/ChatBox';
-import React, { useState } from 'react';
-import { LightThemeContext } from './contexts/ThemeContext';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ChatBox from './components/ChatBox';
 import PastConversations from './components/PastConversations';
 
 function App() {
@@ -16,5 +12,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

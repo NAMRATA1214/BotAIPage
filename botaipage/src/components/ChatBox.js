@@ -42,19 +42,19 @@ const ChatBox = () => {
     setMessages([...newMessages, { sender: 'ai', text: aiResponse, time: getCurrentTime() }]);
   };
 
-  const handleSendMessage = async () => {
-    if (!input.trim()) return;
+const handleSendMessage = async () => {
+  if (!input.trim()) return;
 
-    setShowInitialQuestions(false);
-    setLoadPreviousChats(false);
+  setShowInitialQuestions(false);
+  setLoadPreviousChats(false);
 
-    const userMessage = { sender: 'user', text: input, time: getCurrentTime() };
-    const aiText = staticQA[input.trim()] || "Sorry, Did not understand your query!";
-    const aiMessage = { sender: 'ai', text: aiText, time: getCurrentTime() };
+  const userMessage = { sender: 'user', text: input, time: getCurrentTime() };
+  const aiText = staticQA[input.trim()] || "Sorry, Did not understand your query!";
+  const aiMessage = { sender: 'ai', text: aiText, time: getCurrentTime() };
 
-    setMessages([...messages, userMessage, aiMessage]);
-    setInput('');
-  };
+  setMessages(prev => [...prev, userMessage, aiMessage]);
+  setInput('');
+};
 
   const startNewChat = () => {
     if (messages.length > 0) {

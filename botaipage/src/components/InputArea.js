@@ -20,26 +20,23 @@ function InputArea({
     return (
         <div className="input-area">
             <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}>
+  <input
+    type="text"
+    placeholder="Message Bot AI..."
+    value={input}
+    onChange={(e) => setInput(e.target.value)}
+    style={{
+      background: !lightTheme && '#240b4a',
+      border: !lightTheme && '2px solid magenta',
+      color: !lightTheme && 'white'
+    }}
+  />
+  <button type="submit">Ask</button>
+</form>
 
-            <input
-  type="text"
-  placeholder="Message Bot AI..."
-  value={input}
-  onChange={(e) => setInput(e.target.value)}
-  style={{
-    background: !lightTheme && '#240b4a',
-    border: !lightTheme && '2px solid magenta',
-    color: !lightTheme && 'white',
-  }}
-/>
-
-            <button type="submit" onClick={handleSendMessage} style={{ background: !lightTheme && 'magenta', color: !lightTheme && 'white' }}>
-                Ask
-            </button>
             <button type="button" onClick={handleFeedbackModal} style={{ background: !lightTheme && 'magenta', color: !lightTheme && 'white' }}>
                 Save
             </button>
-            </form>
 
             {showFeedbackModal && (
                 <FeedbackForm

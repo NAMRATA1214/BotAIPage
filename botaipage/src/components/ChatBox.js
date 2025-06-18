@@ -38,23 +38,24 @@ const ChatBox = () => {
   const handleQuestionClick = async (question) => {
     setShowInitialQuestions(false);
     const newMessages = [{ sender: 'user', text: question, time: getCurrentTime() }];
-    const aiResponse = staticQA[input.trim()] || "Sorry, Did not understand your query!";
-    setMessages([...newMessages, { sender: 'ai', text: aiResponse, time: getCurrentTime() }]);
+    const aiResponse = staticQA[question.trim()] || "Sorry, Did not understand your query!";
+    const aiMessage = { sender: 'ai', text: aiResponse, time: getCurrentTime() };
+    setMessages([...newMessages, aiMessage]);
   };
 
-const handleSendMessage = async () => {
-  if (!input.trim()) return;
+  const handleSendMessage = async () => {
+    if (!input.trim()) return;
 
-  setShowInitialQuestions(false);
-  setLoadPreviousChats(false);
+    setShowInitialQuestions(false);
+    setLoadPreviousChats(false);
 
-  const userMessage = { sender: 'user', text: input, time: getCurrentTime() };
-  const aiText = staticQA[input.trim()] || "Sorry, Did not understand your query!";
-  const aiMessage = { sender: 'ai', text: aiText, time: getCurrentTime() };
+    const userMessage = { sender: 'user', text: input, time: getCurrentTime() };
+    const aiText = staticQA[input.trim()] || "Sorry, Did not understand your query!";
+    const aiMessage = { sender: 'ai', text: aiText, time: getCurrentTime() };
 
-  setMessages(prev => [...prev, userMessage, aiMessage]);
-  setInput('');
-};
+    setMessages(prev => [...prev, userMessage, aiMessage]);
+    setInput('');
+  };
 
   const startNewChat = () => {
     if (messages.length > 0) {
@@ -73,16 +74,11 @@ const handleSendMessage = async () => {
 
   useEffect(() => {
     setCurrentChatId(Date.now());
-    const savedChats = localStorage.getItem('previousChats');
-    if (savedChats) {
-      setPreviousChats(JSON.parse(savedChats));
-    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('previousChats', JSON.stringify(previousChats));
   }, [previousChats]);
-  
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
@@ -174,6 +170,7 @@ const handleSendMessage = async () => {
 
         <div className='message-area'>
           {showPage()}
+          <div ref={messagesEndRef} />
         </div>
 
         {!loadPreviousChats &&

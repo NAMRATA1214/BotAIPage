@@ -13,9 +13,14 @@ const MessageList = ({ messages }) => {
   console.log(messages)
   return (
     <div className="messages">
-      {messages.map((msg, index) => (
-        <Message key={index} sender={msg.sender} text={msg.text} time={msg.time} pastConvo={false}/>
-      ))}
+{messages.map((msg, index) => (
+  <div key={index} className="chat-message">
+    <p className="time">{msg.time}</p>
+    <p>
+      <span>{msg.sender === 'ai' ? 'Soul AI' : 'You'}</span>: {msg.text}
+    </p>
+  </div>
+))}
       <div ref={messagesEndRef}></div>
     </div>
   );

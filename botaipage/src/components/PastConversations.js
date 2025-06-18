@@ -29,7 +29,7 @@ export default function PastConversations({ previousChats = [] }) {
     return (
         previousChats?.length > 0 ? (
             <div className='PastConversations'>
-                <p className='heading'>Conversation History</p>
+<p className="heading">Conversation History</p>
 
                 <div className='rating-filter'>
                     <select

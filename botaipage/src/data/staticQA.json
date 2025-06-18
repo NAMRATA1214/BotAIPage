@@ -1,6 +1,6 @@
 {
   "What is the virtual DOM?": "The virtual DOM is a lightweight copy of the real DOM used by React to improve performance.",
-  "Can you explain RESTful APIs?": "RESTful APIs follow REST architecture principles for interaction between client and server.",
+  "Can you explain RESTful APIs?": "RESTful APIs are designed around the REST (Representational State Transfer) architecture, which uses HTTP requests to access and manipulate data. They follow a stateless, client-server, cacheable communications protocol.",
   "What is a Promise in JavaScript?": "A Promise represents the eventual completion (or failure) of an asynchronous operation.",
   "How do you handle errors in async/await?": "Use try...catch blocks around async/await logic to handle errors gracefully."
 }

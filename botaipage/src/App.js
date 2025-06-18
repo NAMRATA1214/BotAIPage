@@ -3,18 +3,17 @@ import ChatBox from './components/ChatBox';
 import React, { useState } from 'react';
 import { LightThemeContext } from './contexts/ThemeContext';
 
-function App() {
-  const [lightTheme, setLightTheme] = useState(true)
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PastConversations from './components/PastConversations';
 
-  const toggleTheme = () => {
-    setLightTheme(!lightTheme);
-  };
+function App() {
   return (
-    <LightThemeContext.Provider value={{ lightTheme, toggleTheme }}>
-      <React.StrictMode>
-        <ChatBox />
-      </React.StrictMode>
-    </LightThemeContext.Provider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ChatBox />} />
+        <Route path="/history" element={<PastConversations />} />
+      </Routes>
+    </Router>
   );
 }
 

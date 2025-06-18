@@ -3,21 +3,27 @@ import { Drawer } from '@mui/material';
 import { LightThemeContext } from '../contexts/ThemeContext';
 
 const ChatSidebar = ({ isMobile, isDrawerOpen, toggleDrawer, startNewChat, handlePastConvo }) => {
-  const { lightTheme } = useContext(LightThemeContext)
+  const { lightTheme } = useContext(LightThemeContext);
 
   return (
     <>
       {isMobile ? (
-        <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} className='drawer' PaperProps={{
-          style: {
-            backgroundColor: 'black',
-            color: 'white',
-          },
-        }}>
+        <Drawer
+          anchor="left"
+          open={isDrawerOpen}
+          onClose={toggleDrawer(false)}
+          className="drawer"
+          PaperProps={{
+            style: {
+              backgroundColor: 'black',
+              color: 'white',
+            },
+          }}
+        >
           <SidebarContent startNewChat={startNewChat} handlePastConvo={handlePastConvo} />
         </Drawer>
       ) : (
-        <div className='drawer' style={{ background: !lightTheme && 'black' }}>
+        <div className="drawer" style={{ background: !lightTheme && 'black' }}>
           <SidebarContent startNewChat={startNewChat} handlePastConvo={handlePastConvo} />
         </div>
       )}
@@ -26,25 +32,53 @@ const ChatSidebar = ({ isMobile, isDrawerOpen, toggleDrawer, startNewChat, handl
 };
 
 const SidebarContent = ({ startNewChat, handlePastConvo }) => {
-  const { lightTheme } = useContext(LightThemeContext)
+  const { lightTheme } = useContext(LightThemeContext);
 
   return (
-    <div >
-      <div className='drawer-header'
-        style={{ background: !lightTheme && 'black' }}
-      >
-        <img src="/images/logo2.svg" alt="logo2" className='logo-img' />
-        <span>New Chat</span>
-        {lightTheme
-          ? <img src='/images/new-chat.svg' classNamFe='new-chat-button' onClick={startNewChat} alt='new-chat' />
-          : <img src='/images/new-chat-white.svg' classNamFe='new-chat-button' onClick={startNewChat} alt='new-chat-white' />}
+    <div>
+      <div className="drawer-header" style={{ background: !lightTheme && 'black' }}>
+        <img src="/images/logo2.svg" alt="logo2" className="logo-img" />
 
+        {/* ✅ Text-based New Chat link */}
+        <a
+          href="/"
+          className="new-chat-button"
+          onClick={startNewChat}
+          style={{
+            display: 'block',
+            padding: '10px',
+            color: lightTheme ? '#000' : '#fff',
+            textDecoration: 'none',
+            background: lightTheme ? '#f0f0f0' : '#401d78',
+            marginTop: '10px',
+            borderRadius: '5px',
+            textAlign: 'center',
+          }}
+        >
+          New Chat
+        </a>
       </div>
-      <button className='past-convo-button' onClick={handlePastConvo} style={{ background: !lightTheme && 'magenta', color: !lightTheme && 'white' }}>
+
+      {/* ✅ Text-based Past Conversations link */}
+      <a
+        href="/history"
+        className="past-convo-button"
+        onClick={handlePastConvo}
+        style={{
+          display: 'block',
+          padding: '10px',
+          marginTop: '20px',
+          background: !lightTheme ? 'magenta' : '#eee',
+          color: !lightTheme ? 'white' : 'black',
+          textDecoration: 'none',
+          borderRadius: '5px',
+          textAlign: 'center',
+        }}
+      >
         Past Conversations
-      </button>
+      </a>
     </div>
   );
-}
+};
 
 export default ChatSidebar;

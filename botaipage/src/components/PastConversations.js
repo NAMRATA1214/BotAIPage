@@ -3,8 +3,6 @@ import { Rating } from '@mui/material';
 import { LightThemeContext } from '../contexts/ThemeContext';
 
 export default function PastConversations({ previousChats = [] }) {
-  console.log("📦 PastConversations received chats:", previousChats);
-
   const [filteredChat, setFilteredChats] = useState(previousChats);
   const [rating, setRating] = useState('');
   const { lightTheme } = useContext(LightThemeContext);
@@ -28,76 +26,80 @@ export default function PastConversations({ previousChats = [] }) {
     setFilteredChats(filtered);
   };
 
-  return filteredChat?.length > 0 ? (
+  return (
     <div className='PastConversations'>
       <h2 className='heading'>Past Conversations</h2>
 
-      <div className='rating-filter'>
-        <select
-          name="rating"
-          id="rating"
-          value={rating}
-          onChange={handleFilter}
-          style={{ background: !lightTheme && '#5b4185', color: !lightTheme && 'white' }}
-        >
-          <option value="">All Ratings</option>
-          <option value="0">0 Stars</option>
-          <option value="1">1 Star</option>
-          <option value="2">2 Stars</option>
-          <option value="3">3 Stars</option>
-          <option value="4">4 Stars</option>
-          <option value="5">5 Stars</option>
-        </select>
-      </div>
-
-      <div className='content' style={{ background: !lightTheme && 'transparent' }}>
-        {filteredChat.map((chat, index) => (
-          <div className='chat-section' key={index}>
-            <p className='date'>
-              {chat.date === new Date().toDateString() ? 'Today' : chat.date}
-            </p>
-
-            <div className='prev-convo-messages' style={{ background: !lightTheme && '#310E68' }}>
-              {chat?.messages?.length > 0 ? (
-                chat.messages.map((message, msgIndex) => (
-                  <div key={msgIndex} className='message-entry'>
-                    <p><strong>{message.sender === 'user' ? 'You' : 'Soul AI'}:</strong> {message.text}</p>
-                    <p className='timestamp'>{message.time}</p>
-                  </div>
-                ))
-              ) : (
-                <p>No messages</p>
-              )}
-
-              {chat?.rating >= 0 && (
-                <p className='rating'>
-                  Rating:
-                  <Rating
-                    name="read-only"
-                    value={chat.rating}
-                    readOnly
-                    size="small"
-                    sx={{
-                      '& .MuiRating-iconFilled': {
-                        color: '#000000',
-                      },
-                    }}
-                  />
-                </p>
-              )}
-
-              {chat?.feedback && (
-                <div className='feedback-section'>
-                  <p className='feedback-heading'>Feedback: </p>
-                  <p className='feedback'>{chat.feedback}</p>
-                </div>
-              )}
-            </div>
+      {previousChats.length === 0 ? (
+        <p className='no-prev-chat'>No previous chats</p>
+      ) : (
+        <>
+          <div className='rating-filter'>
+            <select
+              name="rating"
+              id="rating"
+              value={rating}
+              onChange={handleFilter}
+              style={{ background: !lightTheme && '#5b4185', color: !lightTheme && 'white' }}
+            >
+              <option value="">All Ratings</option>
+              <option value="0">0 Stars</option>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
           </div>
-        ))}
-      </div>
+
+          <div className='content' style={{ background: !lightTheme && 'transparent' }}>
+            {filteredChat.map((chat, index) => (
+              <div className='chat-section' key={index}>
+                <p className='date'>
+                  {chat.date === new Date().toDateString() ? 'Today' : chat.date}
+                </p>
+
+                <div className='prev-convo-messages' style={{ background: !lightTheme && '#310E68' }}>
+                  {chat?.messages?.length > 0 ? (
+                    chat.messages.map((message, msgIndex) => (
+                      <div key={msgIndex} className='message-entry'>
+                        <p><strong>{message.sender === 'user' ? 'You' : 'Soul AI'}:</strong> {message.text}</p>
+                        <p className='timestamp'>{message.time}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No messages</p>
+                  )}
+
+                  {chat?.rating >= 0 && (
+                    <p className='rating'>
+                      Rating:
+                      <Rating
+                        name="read-only"
+                        value={chat.rating}
+                        readOnly
+                        size="small"
+                        sx={{
+                          '& .MuiRating-iconFilled': {
+                            color: '#000000',
+                          },
+                        }}
+                      />
+                    </p>
+                  )}
+
+                  {chat?.feedback && (
+                    <div className='feedback-section'>
+                      <p className='feedback-heading'>Feedback: </p>
+                      <p className='feedback'>{chat.feedback}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
-  ) : (
-    <p className='no-prev-chat'>No previous chats</p>
   );
 }

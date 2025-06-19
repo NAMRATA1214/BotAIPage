@@ -37,6 +37,7 @@ function InputArea({
             <button type="button" onClick={handleFeedbackModal} style={{ background: !lightTheme && 'magenta', color: !lightTheme && 'white' }}>
                 Save
             </button>
+            
 
             {showFeedbackModal && (
                 <FeedbackForm

@@ -42,24 +42,8 @@ const SidebarContent = ({ startNewChat, handlePastConvo }) => {
         <a href="/" className="new-chat-button" onClick={startNewChat}>New Chat</a>
       </div>
 
-      {/* ✅ Text-based Past Conversations link */}
-      <a
-        href="/history"
-        className="past-convo-button"
-        onClick={handlePastConvo}
-        style={{
-          display: 'block',
-          padding: '10px',
-          marginTop: '20px',
-          background: !lightTheme ? 'magenta' : '#eee',
-          color: !lightTheme ? 'white' : 'black',
-          textDecoration: 'none',
-          borderRadius: '5px',
-          textAlign: 'center',
-        }}
-      >
-        Past Conversations
-      </a>
+      <a href="/history" className='past-convo-button' onClick={handlePastConvo}>Past Conversations</a>
+
     </div>
   );
 };

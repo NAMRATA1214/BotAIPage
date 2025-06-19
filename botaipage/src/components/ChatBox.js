@@ -35,6 +35,24 @@ const ChatBox = () => {
     "How do you handle errors in async/await?"
   ];
 
+  // ✅ Fix for test case 5: Load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('previousChats');
+    if (saved) {
+      try {
+        setPreviousChats(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error parsing saved chats", e);
+        setPreviousChats([]);
+      }
+    }
+    setCurrentChatId(Date.now());
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('previousChats', JSON.stringify(previousChats));
+  }, [previousChats]);
+
   const handleQuestionClick = async (question) => {
     setShowInitialQuestions(false);
     const newMessages = [{ sender: 'user', text: question, time: getCurrentTime() }];
@@ -59,26 +77,19 @@ const ChatBox = () => {
 
   const startNewChat = () => {
     if (messages.length > 0) {
-      setPreviousChats([...previousChats, {
+      const updatedChats = [...previousChats, {
         id: currentChatId,
         date: new Date().toDateString(),
         messages,
         rating,
         feedback: comment
-      }]);
+      }];
+      setPreviousChats(updatedChats);
     }
     setMessages([]);
     setShowInitialQuestions(true);
     setLoadPreviousChats(false);
   };
-
-  useEffect(() => {
-    setCurrentChatId(Date.now());
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('previousChats', JSON.stringify(previousChats));
-  }, [previousChats]);
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
@@ -107,20 +118,24 @@ const ChatBox = () => {
 
   const handlePastConvo = () => {
     if (messages.length > 0) {
-      setPreviousChats([...previousChats, {
+      const updatedChats = [...previousChats, {
         id: currentChatId,
         date: new Date().toDateString(),
         messages,
         rating,
         feedback: comment
-      }]);
+      }];
+      setPreviousChats(updatedChats);
     }
     setShowInitialQuestions(false);
     setLoadPreviousChats(true);
   };
 
   const handleFeedbackModal = () => {
-    if (messages.length !== 0) setShowFeedbackModal(true);
+    if (messages.length !== 0) {
+      saveFeedback();
+      setShowFeedbackModal(true);
+    }
   };
 
   const showPage = () => {
